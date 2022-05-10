@@ -27,10 +27,7 @@ public class ASeleniumTest {
     }
 
     @Test
-    public void multiplicationTest() {
-
-
-      
+    public void firstTest() {
         MainPage mainPage = new MainPage(this.driver);
         System.out.println(mainPage.getBodyText());
         Assert.assertTrue(mainPage.getBodyText().contains("Copyright © 1996-2015 National Geographic Society"));
@@ -56,15 +53,30 @@ public class ASeleniumTest {
         EnquirePage enquirePage = new EnquirePage(this.driver);
         enquirePage.fillEnquireForm();
 
-        driver.navigate().to("https://www.nationalgeographic.com/?loggedout=true&loggedin=true");
 
-        mainPage.testNavHover();
+        mainPage.testNavHoverAndLogOut();
 
     }
-    // @After
-    // public void close() {
-    //     if (driver != null) {
-    //         driver.quit();
-    //     }
-    // }
+
+    @Test
+    public void secondTest() {
+        MainPage mainPage = new MainPage(this.driver);
+        System.out.println(mainPage.getBodyText());
+        Assert.assertTrue(mainPage.getBodyText().contains("Copyright © 1996-2015 National Geographic Society"));
+        
+        mainPage.acceptPopupMenu();
+        
+        SearchPage searchResultPage = mainPage.search("Tours");
+        String bodyText = searchResultPage.getBodyText();
+        Assert.assertTrue(mainPage.getBodyText().contains(checkSearch));
+        System.out.println("Search Result Checking string:" + checkSearch);
+
+    }
+
+    @After
+    public void close() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 }

@@ -71,10 +71,10 @@ public class MainPage extends PageBase{
     }
     
 
-    public void testNavHover(){
+    public void testNavHoverAndLogOut(){
         JavascriptExecutor js = (JavascriptExecutor) driver;
-
-
+        
+        driver.navigate().to("https://www.nationalgeographic.com/?loggedout=true&loggedin=true");
 
         Actions actions = new Actions(driver);
         WebElement mainElement =  waitAndReturnElement(hoverMainLocator);
@@ -87,6 +87,8 @@ public class MainPage extends PageBase{
         actions.moveToElement(subMenu);
         actions.click().build().perform();
     }
+
+
    
 
     public SearchPage search(String searchQuery) {
@@ -100,7 +102,6 @@ public class MainPage extends PageBase{
     public void menuItem(){
         this.waitAndReturnElement(menuButtonLocator).click();
         this.waitAndReturnElement(tripButtonLocator).click();
-
     }
  
 
